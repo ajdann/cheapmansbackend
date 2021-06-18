@@ -59,10 +59,10 @@ provider:
 
 functions:
   hello:
-    handler: function/hello.handler
+    handler: function/getById.handler
     events:
       - httpApi:
-          path: /
+          path: /{id}
           method: get
   create:
     handler: function/create.handler
@@ -70,6 +70,12 @@ functions:
       - httpApi:
           path: /
           method: post
+  getAll:
+    handler: function/getAll.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
           
 plugins:
   - serverless-offline

@@ -9,6 +9,16 @@ const ok = (data = {}, message = "Request executed succesfully.") => ({
   },
 });
 
+const notFound = (message = "Item not found.") => ({
+  statusCode: 404,
+  body: JSON.stringify({
+    message: message,
+  }),
+  headers: {
+    "content-type": "application/json",
+  },
+});
+
 const error = (message = "Internal server error.") => ({
   statusCode: 500,
   body: JSON.stringify({
@@ -19,4 +29,19 @@ const error = (message = "Internal server error.") => ({
   },
 });
 
-module.exports = { ok, error };
+const unprocessableEntity = () => ({
+  statusCode: 422,
+  body: JSON.stringify({
+    message: message,
+  }),
+  headers: {
+    "content-type": "application/json",
+  },
+});
+
+module.exports = {
+  ok,
+  notFound,
+  unprocessableEntity,
+  error,
+};
